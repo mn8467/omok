@@ -1,0 +1,28 @@
+spring:
+  web:
+    resources:
+      static-locations: classpath:/static/
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  datasource:
+    url: jdbc:mysql://concave-db.cnoqa4uyoqo3.ap-northeast-2.rds.amazonaws.com:3306/mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: admin
+    password: alsghwjd6588!
+    hikari:
+      maximum-pool-size: 500
+      connection-timeout: 5000
+      connection-init-sql: SELECT 1
+      validation-timeout: 2000
+      minimum-idle: 20
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    hibernate:
+      ddl-auto: update # 데이터베이스 스키마 자동 생성 및 업데이트 방식
+    show-sql: true # SQL 쿼리를 콘솔에 출력
+    properties:
+      hibernate:
+        format_sql: true # SQL 쿼리를 포맷하여 출력
+    defer-datasource-initialization: true # 데이터베이스 초기화 지연
