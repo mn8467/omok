@@ -1,8 +1,7 @@
 package com.example.demo.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
@@ -10,6 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
     @Id
@@ -36,7 +36,15 @@ public class User {
         if (this.password != null) {
             this.password = new BCryptPasswordEncoder().encode(this.password);
         }
-        LocalDateTime createdAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
+    public User(Long userId, String userName, String password, String email,String userRole) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.userRole = userRole;
+
+    }
 }
