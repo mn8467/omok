@@ -20,9 +20,7 @@ spring:
       max-lifetime: 1800000
   jpa:
     hibernate:
-      ddl-auto: update # 데이터베이스 스키마 자동 생성 및 업데이트 방식
-#      naming:
-#        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      ddl-auto: none
     show-sql: true # SQL 쿼리를 콘솔에 출력
     properties:
       hibernate:

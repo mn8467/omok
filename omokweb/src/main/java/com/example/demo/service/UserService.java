@@ -4,30 +4,37 @@ import com.example.demo.domain.User;
 import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
-    private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+@RequiredArgsConstructor
+public class UserService implements UserDetailsService {
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+    private final UserRepository userRepository;
+
+    private final PasswordEncoder passwordEncoder;
+
+
+    public User createUser(User user) {
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+
+        User newUser = User.builder()
+                .userName(user.getUserName())
+                .password(encodedPassword)
+                .email(user.getEmail())
+                .userRole("USER")
+                .build();
+        return userRepository.save(newUser);
     }
 
-    public User registerUser(Long userId, String userName, String rawPassword, String email,String userRole) {
-        String encodedPassword = passwordEncoder.encode(rawPassword);
-
-        User user = User.builder()
-                .userId(userId)
-                .userName(userName)
-                .password(encodedPassword)
-                .email(email)
-                .userRole(userRole)
-                .build();
-
-        return userRepository.save(user);
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }

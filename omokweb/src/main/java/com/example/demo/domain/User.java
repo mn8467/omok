@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
+@Table(name = "user")
 public class User {
 
     @Id
@@ -38,13 +39,14 @@ public class User {
         }
         this.createdAt = LocalDateTime.now();
     }
-
-    public User(Long userId, String userName, String password, String email,String userRole) {
-        this.userId = userId;
+    @Builder
+    public User(String userName, String password, String email,String userRole) {
         this.userName = userName;
         this.password = password;
         this.email = email;
         this.userRole = userRole;
 
     }
+
 }
+
