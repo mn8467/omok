@@ -99,7 +99,7 @@ public class SecurityConfig {
             // UserDetails 를 가져오기 위해 UserDetailsService 구현 이용
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-            log.debug(userDetails.getPassword());
+//            log.debug(userDetails.getPassword());
             // 사용자가 존재하면 matches() 로 암호 확인
             if (passwordEncoder.matches(password, userDetails.getPassword())) {
                 // 암호가 일치하면 AuthenticationProvider 는 인증된 사용자 객체를 반환
