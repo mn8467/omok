@@ -22,16 +22,7 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
-
-//    @PostMapping("/signup")
-//    public String processSignup (@ModelAttribute User user, RedirectAttributes redirectAttributes) {
-//        userService.createUser(user);
-//
-//        redirectAttributes.addFlashAttribute("message", "회원가입이 완료되었습니다. 로그인해주세요!");
-//
-//        return "redirect:/login";
-//    }
-
+    
     @PostMapping("/signup")
     public RedirectView processSignup(@ModelAttribute User user) {
         userService.createUser(user);
