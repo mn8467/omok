@@ -12,7 +12,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @RequiredArgsConstructor
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
- //만드는중 ZZ
+ //만드는중 Z
     private final ObjectMapper objectMapper;
     //payload를 ChatMessage 객체로 만들어 주기 위한 objectMapper
 /*
